@@ -4,17 +4,18 @@ const here = {
     apiKey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
 };
 // seattle 47.606209, -122.332069
-const style = 'lite.day' // new york 40.748441, -73.985664
+const style = 'lite.night' // new york 40.748441, -73.985664
 const coords = [47.606209, -122.332069] //[30.284336, -97.734588] 
+
 // initializes a map and sets the starting coordinates
 const trafficCoords1 = [47.571051, -122.351018]
 const trafficCoords2 = [47.658364, -122.275047]
+
 // seattle -122.351018,47.571051,-122.275047,47.658364
 // [40.716766, -74.06601] const trafficCoords2 = [40.71193, -73.94080]
 var map = L.map('map').setView(coords, 15);
 
 const mapUrl = `https://maps.hereapi.com/v3/base/mc/{z}/{x}/{y}/png8?style=${style}&apiKey=${here.apiKey}`;
-//'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
 L.tileLayer(mapUrl, {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -44,11 +45,11 @@ fetch(hereTrafficApiUrl)
 
    function getLineColor(jamFactor) {
     if (jamFactor <= 0) {
-        return '#2ECC40'; // Green for low congestion
+        return '#1bffff'; // cyan for low congestion
     } else if (jamFactor <= 1) {
-        return '#FF851B'; // Orange for moderate congestion
+        return '#831bff'; // purple for moderate congestion
     } else {
-        return '#FF4136'; // Red for high congestion
+        return '#fc0bf1'; // magenta for high congestion
     }
  }
 
