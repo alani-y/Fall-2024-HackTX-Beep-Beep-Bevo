@@ -1,4 +1,4 @@
-// 4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw
+// https://www.here.com/learn/blog/here-traffic-api-raster-web-app-leaflet-js
 
 const here = {
     apiKey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
