@@ -4,3 +4,22 @@
     height: 500px;
 }
 
+.leaflet-container {
+    /* Scale down the map to give it a pixelated look */
+    transform: scale(0.1);
+    /* Scale back up to the original size */
+    image-rendering: pixelated;  /* Ensures scaling uses a blocky effect */
+    transform-origin: top left;  /* Keeps the top left as the origin */
+  }
+
+.map-container {
+    /* The map container scales back up to full size */
+    transform: scale(10);  /* Inverse of scale(0.1) */
+    transform-origin: top left;
+    overflow: hidden;
+}
+
+/*
+.leaflet-container {
+    filter: contrast(150%) saturate(80%);
+}*/

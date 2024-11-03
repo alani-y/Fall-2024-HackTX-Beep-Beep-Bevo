@@ -3,18 +3,26 @@
 const here = {
     apiKey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
 };
-// 47.606209, -122.332069
+// seattle 47.606209, -122.332069
 const style = 'lite.day' // new york 40.748441, -73.985664
 const coords = [47.606209, -122.332069] //[30.284336, -97.734588] 
 // initializes a map and sets the starting coordinates
+const trafficCoords1 = [47.571051, -122.351018]
+const trafficCoords2 = [47.658364, -122.275047]
+// seattle -122.351018,47.571051,-122.275047,47.658364
+// [40.716766, -74.06601] const trafficCoords2 = [40.71193, -73.94080]
 var map = L.map('map').setView(coords, 15);
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+const mapUrl = `https://maps.hereapi.com/v3/base/mc/{z}/{x}/{y}/png8?style=${style}&apiKey=${here.apiKey}`;
+//'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+
+L.tileLayer(mapUrl, {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
 
-const hereTrafficApiUrl = `https://data.traffic.hereapi.com/v7/flow?locationReferencing=shape&in=bbox:-122.351018,47.571051,-122.275047,47.658364&apiKey=${here.apiKey}`;
+const hereTrafficApiUrl = 
+`https://data.traffic.hereapi.com/v7/flow?locationReferencing=shape&in=bbox:${trafficCoords1[1]},${trafficCoords1[0]},${trafficCoords2[1]},${trafficCoords2[0]}&apiKey=${here.apiKey}`;
 
 fetch(hereTrafficApiUrl)
    .then(response => response.json())
