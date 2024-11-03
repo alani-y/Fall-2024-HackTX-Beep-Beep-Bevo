@@ -13,9 +13,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-/*
-const hereTileUrl = `https://maps.hereapi.com/v3/base/mc/{z}/{x}/{y}/png8?style=your_style&apiKey=your_api_key`;
-L.tileLayer(hereTileUrl).addTo(map);*/
 
 const hereTrafficApiUrl = `https://data.traffic.hereapi.com/v7/flow?locationReferencing=shape&in=bbox:-122.351018,47.571051,-122.275047,47.658364&apiKey=${here.apiKey}`;
 
