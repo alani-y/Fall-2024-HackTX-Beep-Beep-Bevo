@@ -3,9 +3,9 @@
 const here = {
     apiKey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
 };
-
-const style = 'lite.day'
-const coords = [47.606209, -122.332069] //[30.284336, -97.734588]
+// 47.606209, -122.332069
+const style = 'lite.day' // new york 40.748441, -73.985664
+const coords = [47.606209, -122.332069] //[30.284336, -97.734588] 
 // initializes a map and sets the starting coordinates
 var map = L.map('map').setView(coords, 15);
 
