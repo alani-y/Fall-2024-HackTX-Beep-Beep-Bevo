@@ -1,11 +1,15 @@
 // https://www.here.com/learn/blog/here-traffic-api-raster-web-app-leaflet-js
 
+var platform = new H.service.Platform({
+    apikey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
+});
+
+
 const here = {
     apiKey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
-
 };
 // seattle 47.606209, -122.332069
-const style = 'lite.night' // new york 40.748441, -73.985664
+//const style = 'lite.night' // new york 40.748441, -73.985664
 const coords = [30.284336, -97.734588] // UT 30.284336, -97.734588
 
 // sets the coordinates of the area of traffic data we need
@@ -14,14 +18,16 @@ const trafficCoords2 = [30.335960, -97.666177]
 
 // seattle -122.351018,47.571051,-122.275047,47.658364
 // [40.716766, -74.06601] const trafficCoords2 = [40.71193, -73.94080]
-var map = L.map('map').setView(coords, 15);
 
-const mapUrl = `https://maps.hereapi.com/v3/base/mc/{z}/{x}/{y}/png8?style=${style}&apiKey=${here.apiKey}`;
+var defaultLayers = platform.createDefaultLayers();
 
-L.tileLayer(mapUrl, {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
+var map = new H.Map(document.getElementById('map'), defaultLayers.vector.normal.map, {
+    center: {lat: coords[0], lng: coords[1]},
+    zoom: 15,
+    pixelRatio: window.devicePixelRatio || 1
+});
+window.addEventListener('resize', () => map.getViewPort().resize());
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
 const hereTrafficApiUrl = 
 `https://data.traffic.hereapi.com/v7/flow?locationReferencing=shape&in=bbox:${trafficCoords1[1]},${trafficCoords1[0]},${trafficCoords2[1]},${trafficCoords2[0]}&apiKey=${here.apiKey}`;
