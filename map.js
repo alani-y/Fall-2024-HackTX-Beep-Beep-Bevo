@@ -1,7 +1,7 @@
 // https://www.here.com/learn/blog/here-traffic-api-raster-web-app-leaflet-js
 
 const here = {
-    apiKey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
+    apiKey: secret.HERE_MAP
 };
 // seattle 47.606209, -122.332069
 const style = 'lite.night' // new york 40.748441, -73.985664
