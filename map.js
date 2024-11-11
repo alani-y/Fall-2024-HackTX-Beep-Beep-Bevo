@@ -5,9 +5,6 @@ var platform = new H.service.Platform({
 });
 
 
-const here = {
-    apiKey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
-};
 // seattle 47.606209, -122.332069
 //const style = 'lite.night' // new york 40.748441, -73.985664
 const coords = [30.284336, -97.734588] // UT 30.284336, -97.734588
@@ -26,6 +23,9 @@ var map = new H.Map(document.getElementById('map'), defaultLayers.vector.normal.
     zoom: 15,
     pixelRatio: window.devicePixelRatio || 1
 });
+
+map.addLayer(defaultLayers.vector.traffic.map)
+
 window.addEventListener('resize', () => map.getViewPort().resize());
 var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
