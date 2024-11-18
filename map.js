@@ -1,3 +1,5 @@
+
+
 // https://www.here.com/learn/blog/here-traffic-api-raster-web-app-leaflet-js
 
 var platform = new H.service.Platform({
@@ -18,6 +20,8 @@ const trafficCoords2 = [30.335960, -97.666177]
 
 var defaultLayers = platform.createDefaultLayers();
 
+var style = ``
+
 var map = new H.Map(document.getElementById('map'), defaultLayers.vector.normal.map, {
     center: {lat: coords[0], lng: coords[1]},
     zoom: 15,
@@ -29,38 +33,29 @@ map.addLayer(defaultLayers.vector.traffic.map)
 window.addEventListener('resize', () => map.getViewPort().resize());
 var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
-const hereTrafficApiUrl = 
-`https://data.traffic.hereapi.com/v7/flow?locationReferencing=shape&in=bbox:${trafficCoords1[1]},${trafficCoords1[0]},${trafficCoords2[1]},${trafficCoords2[0]}&apiKey=${here.apiKey}`;
+// creates a marker at the Texas Union
+var svg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+</svg>`
+var icon = new H.map.Icon(svg, { size: { w: 34, h: 34 } })
 
-// Gets the traffic data
-fetch(hereTrafficApiUrl)
-   .then(response => response.json())
-   .then(data => {
-        // loops once for each data point object
-        data.results.forEach(item => {
-            const links = item.location.shape.links;
-            // adds the data points together as a line
-            links.forEach(link => {
-                const points = link.points.map(point => new L.LatLng(point.lat, point.lng));
-                const lineColor = getLineColor(link.currentFlow?.jamFactor || 0);
-                L.polyline(points, { color: lineColor, weight: 5 }).addTo(map);
-            });
-           
-        });
+var marker = new H.map.Marker({ lat: 30.286549600870256, lng: -97.74117423316017 }, { icon: icon });
 
-   })
-   .catch(error => console.error('Error fetching traffic data:', error));
+map.addObject(marker)
 
-   // changes the color based on traffic level
-   function getLineColor(jamFactor) {
-    if (jamFactor <= 3) {
-        return '#1bffff'; // cyan for low congestion
-    } else if (jamFactor <= 5) {
-        return '#831bff'; // purple for moderate congestion
-    } else {
-        return '#fc0bf1'; // magenta for high congestion
-    }
- }
+
+// adds a pin
+function addMarkerPin(evt){
+    //alert("map clicked")
+    // gets the coordinates where the click is
+    //var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+    //alert(coord)
+    alert("clicked")
+}
+
+// adds a new icon when clicking on the map
+document.getElementById('map').addEventListener("click", addMarkerPin(evt));
+
 
 
 
