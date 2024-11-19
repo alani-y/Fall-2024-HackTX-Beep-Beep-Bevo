@@ -1,11 +1,8 @@
-
-
 // https://www.here.com/learn/blog/here-traffic-api-raster-web-app-leaflet-js
 
 var platform = new H.service.Platform({
     apikey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
 });
-
 
 // seattle 47.606209, -122.332069
 //const style = 'lite.night' // new york 40.748441, -73.985664
@@ -37,25 +34,29 @@ var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 var svg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
   <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
 </svg>`
+
+all_markers = []
+
 var icon = new H.map.Icon(svg, { size: { w: 34, h: 34 } })
 
 var marker = new H.map.Marker({ lat: 30.286549600870256, lng: -97.74117423316017 }, { icon: icon });
+// stores all the markers
+all_markers.push(marker)
 
 map.addObject(marker)
 
-
-// adds a pin
-function addMarkerPin(evt){
-    //alert("map clicked")
-    // gets the coordinates where the click is
-    //var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
-    //alert(coord)
-    alert("clicked")
+// adds a pin where at where the mouse is clicked
+function addMarkerPin(map){
+    map.addEventListener("tap", function (evt) {
+        var pin_coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+        var new_marker = new H.map.Marker({ lat: pin_coord.lat, lng: pin_coord.lng }, { icon: icon });
+        map.addObject(new_marker)
+    });
 }
 
 // adds a new icon when clicking on the map
-document.getElementById('map').addEventListener("click", addMarkerPin(evt));
+//document.getElementById('map').addEventListener("click", addMarkerPin(evt));
 
-
+addMarkerPin(map);
 
 
