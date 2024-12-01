@@ -64,4 +64,3 @@ function addMarkerPin(map){
 
 addMarkerPin(map);
 
-

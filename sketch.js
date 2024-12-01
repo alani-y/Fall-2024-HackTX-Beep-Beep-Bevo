@@ -21,10 +21,6 @@ function setup() {
     capture = captureCanvas.getContext('2d');
 }
 
-map.addEventListener('render', () => {
-    redraw(); // Redraw the pixelated overlay
-});
-
 function draw() {
     clear();
 
@@ -32,7 +28,6 @@ function draw() {
     let imageData = capture.getImageData(0, 0, windowWidth, windowHeight);
 
     pixel_size = 10;
-
 
     console.log(mapCanvas.width, mapCanvas.height); // Should show non-zero values
     console.log(capture); // Ensure ctx is not null
