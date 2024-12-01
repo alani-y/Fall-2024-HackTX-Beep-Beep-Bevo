@@ -4,29 +4,30 @@ var platform = new H.service.Platform({
     apikey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
 });
 
-// seattle 47.606209, -122.332069
-//const style = 'lite.night' // new york 40.748441, -73.985664
-const coords = [30.284336, -97.734588] // UT 30.284336, -97.734588
 
-// sets the coordinates of the area of traffic data we need
+// coordinates of the Texas Union
+const coords = [30.284336, -97.734588]
+
+// sets the coordinates of the area of traffic data around UT
 const trafficCoords1 = [30.263651, -97.810482]
 const trafficCoords2 = [30.335960, -97.666177]
 
-// seattle -122.351018,47.571051,-122.275047,47.658364
-// [40.716766, -74.06601] const trafficCoords2 = [40.71193, -73.94080]
-
+// creates the basis for the map layers
 var defaultLayers = platform.createDefaultLayers();
 
 var style = ``
 
+// creates the base map layer in the html element called 'map'
 var map = new H.Map(document.getElementById('map'), defaultLayers.vector.normal.map, {
     center: {lat: coords[0], lng: coords[1]},
     zoom: 15,
     pixelRatio: window.devicePixelRatio || 1
 });
 
+// adds the traffic data layer to the map
 map.addLayer(defaultLayers.vector.traffic.map)
 
+// makes the window responsive to resizing
 window.addEventListener('resize', () => map.getViewPort().resize());
 var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
@@ -40,11 +41,11 @@ all_markers = []
 
 var icon = new H.map.Icon(svg, { size: { w: 34, h: 34 } })
 
+// adds a marker at the Texas Union
 var marker = new H.map.Marker({ lat: 30.286549600870256, lng: -97.74117423316017 }, { icon: icon });
 // stores all the markers
-all_markers.push(marker)
-
 map.addObject(marker)
+all_markers.push(marker)
 
 // adds a pin where at where the mouse is clicked
 function addMarkerPin(map){
@@ -62,4 +63,5 @@ function addMarkerPin(map){
 }
 
 addMarkerPin(map);
+
 
