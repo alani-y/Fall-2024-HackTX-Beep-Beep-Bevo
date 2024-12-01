@@ -52,7 +52,7 @@ function addMarkerPin(map){
         var pin_coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
         var new_marker = new H.map.Marker({ lat: pin_coord.lat, lng: pin_coord.lng }, { icon: icon });
 
-        // adds an event listener to delete the pin if its tapped again
+        // adds an event listener to delete the pin if the cursor holds over it
         new_marker.addEventListener("longpress", function(){
             map.removeObject(new_marker);
         })
