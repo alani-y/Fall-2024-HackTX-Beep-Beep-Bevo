@@ -4,7 +4,6 @@ var platform = new H.service.Platform({
     apikey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
 });
 
-
 // coordinates of the Texas Union
 const coords = [30.284336, -97.734588]
 
@@ -37,7 +36,8 @@ var svg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="
   <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
 </svg>`
 
-all_markers = []
+var all_markers = [];
+var canvas_markers = [];
 
 var icon = new H.map.Icon(svg, { size: { w: 34, h: 34 } })
 
@@ -47,9 +47,10 @@ var marker = new H.map.Marker({ lat: 30.286549600870256, lng: -97.74117423316017
 map.addObject(marker)
 all_markers.push(marker)
 
+
 // adds a pin where at where the mouse is clicked
 function addMarkerPin(map){
-    map.addEventListener("tap", function (evt) {
+    map.addEventListener("dbltap", function (evt) {
         var pin_coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
         var new_marker = new H.map.Marker({ lat: pin_coord.lat, lng: pin_coord.lng }, { icon: icon });
 
@@ -59,8 +60,11 @@ function addMarkerPin(map){
         })
 
         map.addObject(new_marker)
+        all_markers.push(new_marker)
+
     });
 }
+
 
 addMarkerPin(map);
 
