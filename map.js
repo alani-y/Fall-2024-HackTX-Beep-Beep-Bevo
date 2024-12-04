@@ -50,12 +50,13 @@ all_markers.push(marker)
 
 // adds a pin where at where the mouse is clicked
 function addMarkerPin(map){
-    map.addEventListener("dbltap", function (evt) {
+    map.addEventListener("longpress", function (evt) {
+
         var pin_coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
         var new_marker = new H.map.Marker({ lat: pin_coord.lat, lng: pin_coord.lng }, { icon: icon });
 
         // adds an event listener to delete the pin if the cursor holds over it
-        new_marker.addEventListener("longpress", function(){
+        new_marker.addEventListener("dbltap", function(){
             map.removeObject(new_marker);
         })
 
@@ -64,7 +65,6 @@ function addMarkerPin(map){
 
     });
 }
-
 
 addMarkerPin(map);
 
