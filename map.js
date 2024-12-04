@@ -14,8 +14,6 @@ const trafficCoords2 = [30.335960, -97.666177]
 // creates the basis for the map layers
 var defaultLayers = platform.createDefaultLayers();
 
-var style = ``
-
 // creates the base map layer in the html element called 'map'
 var map = new H.Map(document.getElementById('map'), defaultLayers.vector.normal.map, {
     center: {lat: coords[0], lng: coords[1]},
@@ -37,7 +35,6 @@ var svg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="
 </svg>`
 
 var all_markers = [];
-var canvas_markers = [];
 
 var icon = new H.map.Icon(svg, { size: { w: 34, h: 34 } })
 
@@ -55,8 +52,8 @@ function addMarkerPin(map){
         var pin_coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
         var new_marker = new H.map.Marker({ lat: pin_coord.lat, lng: pin_coord.lng }, { icon: icon });
 
-        // adds an event listener to delete the pin if the cursor holds over it
-        new_marker.addEventListener("dbltap", function(){
+        // adds an event listener to delete the pin if the cursor taps over it
+        new_marker.addEventListener("tap", function(){
             map.removeObject(new_marker);
         })
 

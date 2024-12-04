@@ -32,7 +32,7 @@ function setup() {
 }
 
 function draw(){
-    // the button to calculate the distance between the Texas Union and a marker
+    // the button to visualize a connection between the Texas Union and a marker
     connect_button.draw()
 }
 
@@ -49,9 +49,9 @@ function mouseClicked(){
         var destination_pin = all_markers[all_markers.length-1].getGeometry();
         var destination_spot = global_map.geoToScreen(destination_pin)
 
-        alert(`Union Spot: ${union_spot.x}, ${union_spot.y} \nDestination Spot: ${destination_spot.x}, ${destination_spot.y}`);
+        //alert(`Union Spot: ${union_spot.x}, ${union_spot.y} \nDestination Spot: ${destination_spot.x}, ${destination_spot.y}`);
 
-        stroke(0)
+        stroke('#f95137')
         strokeWeight(10)
         line(union_spot.x, union_spot.y, destination_spot.x, destination_spot.y)
         noStroke()
