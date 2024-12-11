@@ -7,11 +7,10 @@
 .leaflet-container {
     width: 100%;
     height: 100vh;
-    /* Scale down the map to give it a pixelated look */
     transform: scale(0.1);
     /* Scale back up to the original size */
-    image-rendering: pixelated;  /* Ensures scaling uses a blocky effect */
-    transform-origin: top left;  /* Keeps the top left as the origin */
+    image-rendering: pixelated;
+    transform-origin: top left;
   }
 
 .map-container {
@@ -22,8 +21,3 @@
     width: 100%;
     height: 100vh;
 }
-
-/*
-.leaflet-container {
-    filter: contrast(150%) saturate(80%);
-}*/
