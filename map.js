@@ -34,8 +34,10 @@ var svg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="
   <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
 </svg>`
 
+// an array storing all the marker objects
 var all_markers = [];
 
+// sets the size for the marker icon
 var icon = new H.map.Icon(svg, { size: { w: 34, h: 34 } })
 
 // adds a marker at the Texas Union
@@ -45,11 +47,13 @@ map.addObject(marker)
 all_markers.push(marker)
 
 
-// adds a pin where at where the mouse is clicked
+// adds a pin where at where the cursor is held down
 function addMarkerPin(map){
-    map.addEventListener("longpress", function (evt) {
 
+    map.addEventListener("longpress", function (evt) {
+        // gets the screen coordinates of the mouse and converts it to geometric coordinates
         var pin_coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+        // creates a marker object at the geometric coordinates
         var new_marker = new H.map.Marker({ lat: pin_coord.lat, lng: pin_coord.lng }, { icon: icon });
 
         // adds an event listener to delete the pin if the cursor taps over it

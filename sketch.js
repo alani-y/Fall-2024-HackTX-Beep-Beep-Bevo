@@ -2,6 +2,7 @@
 var global_map = map;
 var connect_button;
 
+// class for the connect button
 class button{
     constructor(x, y, width, height, color, text){
         this.x = x;
@@ -12,6 +13,7 @@ class button{
         this.text = text;
     }
 
+    // draws the button to the screen
     draw(){
         noStroke();
         fill(this.color);
@@ -37,19 +39,21 @@ function draw(){
 }
 
 function mouseClicked(){
-
+    // checks if the connect button was clicked
     if (mouseX >= 20 && mouseX <= 120
-        && mouseY >= 20 && mouseY <= 120
+        && mouseY >= 20 && mouseY <= 55
          && all_markers.length > 1){
 
+
         console.log("Map: ", global_map)
+        // gets the coordinates of the union building
         var union_pin = all_markers[0].getGeometry();
+        // converts the union geographic coordinates to screen coordinates
         var union_spot = global_map.geoToScreen(union_pin);
 
+        // gets the marker at the end of the
         var destination_pin = all_markers[all_markers.length-1].getGeometry();
         var destination_spot = global_map.geoToScreen(destination_pin)
-
-        //alert(`Union Spot: ${union_spot.x}, ${union_spot.y} \nDestination Spot: ${destination_spot.x}, ${destination_spot.y}`);
 
         stroke('#f95137')
         strokeWeight(10)
@@ -58,6 +62,7 @@ function mouseClicked(){
     }
 }
 
+// clears the lines on the screen when the map is changed
 map.addEventListener("mapviewchangeend", function(evt){
     clear();
 });
