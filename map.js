@@ -1,7 +1,7 @@
 // https://www.here.com/learn/blog/here-traffic-api-raster-web-app-leaflet-js
 
 var platform = new H.service.Platform({
-    apikey: '4-HrAJRi3cT2dueFnfYFpn5fUhS_Tpi-4QW9F3I7fvw'
+    apikey: //
 });
 
 // coordinates of the Texas Union
