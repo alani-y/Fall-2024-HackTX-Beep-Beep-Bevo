@@ -2,9 +2,11 @@
 
 This repository contains a program that visualizes real-time traffic data around the University of Texas at Austin campus using the Maps API and p5.js.
 
-![Map Image 1](https://github.com/user-attachments/assets/7be310d1-3e24-436b-9b5e-666980a2b109)
-![Map Image 2](https://github.com/user-attachments/assets/cda4e2d2-e33c-43e1-8ca9-df0f12e9f03c)
-![Map Image 3](https://github.com/user-attachments/assets/ba85eb26-84af-452c-bb62-1d88ea72984e)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7be310d1-3e24-436b-9b5e-666980a2b109" width="300"/>
+  <img src="https://github.com/user-attachments/assets/cda4e2d2-e33c-43e1-8ca9-df0f12e9f03c" width="300"/>
+  <img src="https://github.com/user-attachments/assets/ba85eb26-84af-452c-bb62-1d88ea72984e" width="300"/>
+</p>
 This demonstrates how the traffic data would look like, and this utilizes p5.js to connect the pins.
 
 ## Features
